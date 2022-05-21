@@ -13,7 +13,7 @@ const laptops = [
     img: "https://anphat.com.vn/media/product/40621_laptop_asus_zenbook_14_ux425ea_ki839w.jpg",
     price: "14.999$",
     priceReal: "14999",
-    supplier: "Acer",
+    supplier: "Asus",
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const laptops = [
     img: "https://anphat.com.vn/media/product/40011_laptop_gaming_lenovo_legion_5_15ach6h_82ju00mmvn.jpg",
     price: "13.250$",
     priceReal: "13250",
-    supplier: "Acer",
+    supplier: "Lenovo",
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const laptops = [
     img: "https://anphat.com.vn/media/product/250_39341_laptop_dell_mobile_precision_3561.jpg",
     price: "25.000$",
     priceReal: "25000",
-    supplier: "Acer",
+    supplier: "Dell",
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const laptops = [
     img: "https://anphat.com.vn/media/product/250_40030_laptop_asus_vivobook_a515ea_l12033w.jpg",
     price: "17.120$",
     priceReal: "17120",
-    supplier: "Acer",
+    supplier: "Asus",
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const laptops = [
     img: "https://anphat.com.vn/media/product/250_39939_39123_msi_modern_14_b5m_064vn_r5_5500u_a936c87e3177410d9bba59e4a3384e46_master.png",
     price: "10.250$",
     priceReal: "10250",
-    supplier: "Acer",
+    supplier: "MSI",
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ const laptops = [
     img: "https://anphat.com.vn/media/product/250_42061_laptop_gigabyte_aero_16_xe5_73vn938ah__10_.jpg",
     price: "18.900$",
     priceReal: "18900",
-    supplier: "Acer",
+    supplier: "Gigabyte",
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ const laptops = [
     img: "https://anphat.com.vn/media/product/250_42062_laptop_gigabyte_aero_15_oled_kd_72s1623go__1_.jpg",
     price: "22.000$",
     priceReal: "22000",
-    supplier: "Acer",
+    supplier: "Gigabyte",
   },
 ];
 
@@ -78,7 +78,7 @@ function initProduct(val) {
             <h4 class="home-product-item__name">${item.name}</h4>
             <p class="home-product-item__price">Giá:${item.price}</p>
             <p class="home-product-item__supplier">Nhà cung cấp: ${item.supplier}</p>
-            <h1 onclick="buyProduct('${item.id}', '${item.supplier}')">Mua</h1>
+            <h1 onclick="buyProduct('${item.id}', '${item.supplier}', '${item.img}', '${item.name}', '${item.price}', '${item.priceReal}')">Mua</h1>
         </a>
     </div>
     `;
@@ -104,13 +104,12 @@ function filterByPrice(val) {
   initProduct(listProduct);
 }
 
-function buyProduct(id, supplier) {
-  console.log(id, supplier);
+function buyProduct(id, supplier, img, name, price, priceReal) {
   var checkDup = false;
   alert(`Bạn đã chọn mua sản phẩm! Chờ sự đồng ý từ ${supplier}`);
   var colors = [];
-  if (JSON.parse(localStorage.getItem("my_colors"))) {
-    colors = JSON.parse(localStorage.getItem("my_colors"));
+  if (JSON.parse(localStorage.getItem("products"))) {
+    colors = JSON.parse(localStorage.getItem("products"));
   }
 
   colors.map((value) => {
@@ -123,10 +122,14 @@ function buyProduct(id, supplier) {
     colors.push({
       id: id,
       supplier: supplier,
+      img: img,
+      name: name,
+      price: price,
+      priceReal: priceReal,
     });
   }
 
-  localStorage.setItem("my_colors", JSON.stringify(colors)); //store colors
-  var storedColors = JSON.parse(localStorage.getItem("my_colors")); //get them back
+  localStorage.setItem("products", JSON.stringify(colors)); //store colors
+  var storedColors = JSON.parse(localStorage.getItem("products")); //get them back
   console.log(storedColors);
 }

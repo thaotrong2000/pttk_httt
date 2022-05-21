@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+}
+
+.home-product-item {
+  width: 25%;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  text-align: center;
+}
