@@ -65,6 +65,8 @@ const laptops = [
   },
 ];
 
+var priceFilter = "0";
+
 initProduct(laptops); // render product
 
 setInterval(() => {}, 2000);
@@ -80,7 +82,8 @@ function initProduct(val) {
     if (valueLocalStorage) {
       for (let i = 0; i < valueLocalStorage.length; i++) {
         if (valueLocalStorage[i].id == item.id) {
-          return `
+          if (valueLocalStorage[i].priceReal < 15000) {
+            return `
           <div class="grid__column-2-3">
               <a class="home-product-item">
                   <img src="${item.img}" alt="" class="home-product-item__img">
@@ -91,8 +94,35 @@ function initProduct(val) {
               </a>
           </div>
           `;
+          } else {
+            return `
+          <div class="grid__column-2-3">
+              <a class="home-product-item">
+                  <img src="${item.img}" alt="" class="home-product-item__img">
+                  <h4 class="home-product-item__name">${item.name}</h4>
+                  <p class="home-product-item__price">Giá:${item.price}</p>
+                  <p class="home-product-item__supplier">Nhà cung cấp: ${item.supplier}</p>
+                  <h1 class="bought">Đã liên hệ</h1>
+              </a>
+          </div>
+          `;
+          }
         }
       }
+    }
+
+    if (item.priceReal > 15000) {
+      return `
+    <div class="grid__column-2-3">
+        <a class="home-product-item">
+            <img src="${item.img}" alt="" class="home-product-item__img">
+            <h4 class="home-product-item__name">${item.name}</h4>
+            <p class="home-product-item__price">Giá:${item.price}</p>
+            <p class="home-product-item__supplier">Nhà cung cấp: ${item.supplier}</p>
+            <h1 onclick="buyProduct('${item.id}', '${item.supplier}', '${item.img}', '${item.name}', '${item.price}', '${item.priceReal}')">Liên hệ</h1>
+        </a>
+    </div>
+    `;
     }
 
     return `
@@ -115,10 +145,12 @@ function initProduct(val) {
 function filterByPrice(val) {
   var listProduct = laptops.filter((value) => {
     if (val) {
+      priceFilter = "1";
       if (value.priceReal >= 15000) {
         return value;
       }
     } else {
+      priceFilter = "2";
       if (value.priceReal < 15000) {
         return value;
       }
@@ -143,7 +175,7 @@ function filterByPrice(val) {
 
 function buyProduct(id, supplier, img, name, price, priceReal) {
   var checkDup = false;
-  alert(`Bạn đã chọn mua sản phẩm! Chờ sự đồng ý từ ${supplier}`);
+  // alert(`Bạn đã chọn mua sản phẩm! Chờ sự đồng ý từ ${supplier}`);
   var colors = [];
   if (JSON.parse(localStorage.getItem("products"))) {
     colors = JSON.parse(localStorage.getItem("products"));
@@ -170,5 +202,14 @@ function buyProduct(id, supplier, img, name, price, priceReal) {
   var storedColors = JSON.parse(localStorage.getItem("products")); //get them back
   console.log(storedColors);
 
-  location.reload();
+  // location.reload();
+  if (priceFilter == "1") {
+    filterByPrice(true);
+  }
+  if (priceFilter == "2") {
+    filterByPrice(false);
+  }
+  if (priceFilter == "0") {
+    initProduct(laptops);
+  }
 }

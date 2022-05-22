@@ -17,7 +17,10 @@ function filterSupplier() {
       $("#nameSupplier").val().toLowerCase() == value.supplier.toLowerCase()
     ) {
       nameSupplierSave = $("#nameSupplier").val();
-      listProducts.push(value);
+      console.log(value.priceReal, "value");
+      if (value.priceReal > 15000) {
+        listProducts.push(value);
+      }
     }
   });
 
