@@ -12,3 +12,9 @@
 h1 {
   text-align: center;
 }
+
+h1:hover {
+  background-color: #ee4d2d;
+  color: #fff;
+  border-radius: 5px;
+}

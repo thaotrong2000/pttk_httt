@@ -67,10 +67,34 @@ const laptops = [
 
 initProduct(laptops); // render product
 
+setInterval(() => {}, 2000);
+
 function initProduct(val) {
   const productWrapper = document.querySelector(".product-wrap");
 
+  var valueLocalStorage = JSON.parse(localStorage.getItem("products"));
+
   const htmls = val.map((item) => {
+    console.log(item.id);
+
+    if (valueLocalStorage) {
+      for (let i = 0; i < valueLocalStorage.length; i++) {
+        if (valueLocalStorage[i].id == item.id) {
+          return `
+          <div class="grid__column-2-3">
+              <a class="home-product-item">
+                  <img src="${item.img}" alt="" class="home-product-item__img">
+                  <h4 class="home-product-item__name">${item.name}</h4>
+                  <p class="home-product-item__price">Giá:${item.price}</p>
+                  <p class="home-product-item__supplier">Nhà cung cấp: ${item.supplier}</p>
+                  <h1 class="bought">Đã mua</h1>
+              </a>
+          </div>
+          `;
+        }
+      }
+    }
+
     return `
     <div class="grid__column-2-3">
         <a class="home-product-item">
@@ -100,6 +124,19 @@ function filterByPrice(val) {
       }
     }
   });
+
+  var checkEl = document.querySelector(".number-product");
+  console.log(listProduct);
+  if (checkEl) {
+    checkEl.parentNode.removeChild(checkEl);
+  }
+
+  var el = document.createElement("h1");
+  el.innerHTML = `Có ${listProduct.length} sản phẩm được tham gia mời thầu`;
+  el.className = "number-product";
+
+  var div = document.querySelector(".home-filter");
+  div.parentNode.insertBefore(el, div.nextSibling);
 
   initProduct(listProduct);
 }
@@ -132,4 +169,6 @@ function buyProduct(id, supplier, img, name, price, priceReal) {
   localStorage.setItem("products", JSON.stringify(colors)); //store colors
   var storedColors = JSON.parse(localStorage.getItem("products")); //get them back
   console.log(storedColors);
+
+  location.reload();
 }

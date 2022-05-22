@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/main.css" />
     <link rel="stylesheet" href="./assets/css/base.css" />
-    <link rel="stylesheet" href="./assets/css/index.css" />
+    <link rel="stylesheet" href="./assets/css/supplier.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -70,23 +70,14 @@
                 <i class="header__navbar-icon far fa-bell"></i>
               </a>
               <li class="header__navbar-item header__navbar-item-has-notify">
-                <a href="./message.html" class="header__navbar-item-link"
-                  >Thông báo</a
-                >
+                <a href="./message.html" class="header__navbar-item-link">Thông báo</a>
               </li>
               <a href="" class="header__navbar-icon-link">
                 <i class="header__navbar-icon far fa-question-circle"></i>
               </a>
               <li class="header__navbar-item">
-                <a href="" class="header__navbar-item-link">Trợ giúp</a>
+                <a href="./supplier.html" class="header__navbar-item-link">Nhà cung cấp</a>
               </li>
-              <a href="./supplier.html">
-                <li
-                  class="header__navbar-item header__navbar-item--strong header__navbar-item--separate header__navbar-item-has--form"
-                >
-                  Nhà cung cấp
-                </li>
-              </a>
             </ul>
           </nav>
           <!-- Header with search -->
@@ -108,7 +99,8 @@
                 <input
                   type="text"
                   class="header__search-input"
-                  placeholder="Nhập để tìm kiếm sản phẩm"
+                  placeholder="Nhập tên nhà cung cấp"
+                  id="nameSupplier"
                 />
               </div>
               <div class="header__search-selection">
@@ -135,80 +127,7 @@
           </div>
         </div>
       </header>
-      <div class="container">
-        <div class="grid">
-          <div class="grid__row app__content">
-            <div class="grid__column-2">
-              <nav class="category">
-                <h3 class="category__heading">
-                  <i class="category__heading-icon fas fa-list"></i>
-                  Danh mục Laptop
-                </h3>
-                <ul class="category-list">
-                  <li class="category-item category-item--active">
-                    <a href="#" class="category-item__link">Laptop Acer</a>
-                  </li>
-                  <li class="category-item">
-                    <a href="#" class="category-item__link">Laptop HP</a>
-                  </li>
-                  <li class="category-item">
-                    <a href="#" class="category-item__link">Laptop Asus</a>
-                  </li>
-                  <li class="category-item">
-                    <a href="#" class="category-item__link">Laptop Dell</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div class="grid__column-10">
-              <div class="home-filter">
-                <span class="home-filter__label">Sắp xếp theo</span>
-                <button class="home-filter__btn btn">Phổ biến</button>
-                <button class="home-filter__btn btn btn--primary">
-                  Mới nhất
-                </button>
-                <button class="home-filter__btn btn">Bán chạy</button>
-
-                <div class="select-input">
-                  <span class="select-input__label">Giá</span>
-                  <i class="select-input__icon fas fa-angle-down"></i>
-                  <ul class="select-input__list">
-                    <li
-                      class="select-input__item"
-                      onclick="filterByPrice(false)"
-                    >
-                      <a class="select-input__link">Nhỏ hơn 15.000$</a>
-                    </li>
-                    <li
-                      class="select-input__item"
-                      onclick="filterByPrice(true)"
-                    >
-                      <a class="select-input__link">Lớn hơn 15.000$</a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="home-filter__page">
-                  <div class="home-filter__page-control">
-                    <a
-                      href=""
-                      class="home-filter__page-btn home-filter__page-btn--disabled"
-                    >
-                      <i class="home-filter__page-icon fas fa-angle-left"></i>
-                    </a>
-                    <a href="" class="home-filter__page-btn">
-                      <i class="home-filter__page-icon fas fa-angle-right"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="home-product">
-                <div class="grid__row product-wrap"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="container"></div>
       <footer class="footer">
         <div class="grid">
           <div class="grid__row">
@@ -279,6 +198,21 @@
                   alt=""
                   class="footer__download-qr"
                 />
+                  <a href="" class="footer__download-app-link">
+                    <img
+                      src="./assets/img/googleplay.png"
+                      alt=""
+                      class="footer__download-app-img"
+                    />
+                  </a>
+                  <a href="" class="footer__download-app-link">
+                    <img
+                      src="./assets/img/appstore.png"
+                      alt=""
+                      class="footer__download-app-img"
+                    />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -293,5 +227,6 @@
       </footer>
     </div>
   </body>
-  <script src="./main.js"></script>
+  <script src="./jquery-3.6.0.min.js"></script>
+  <script src="./message.js"></script>
 </html>

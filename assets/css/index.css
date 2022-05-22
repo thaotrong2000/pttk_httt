@@ -9,3 +9,18 @@ h1:hover {
   color: #fff;
   border-radius: 4px;
 }
+
+.number-product {
+  display: inline-block;
+}
+
+.number-product:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.bought {
+  background-color: #1b74e4;
+  color: #fff;
+  border-radius: 5px;
+}
